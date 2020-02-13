@@ -1,0 +1,61 @@
+body{
+    font-family: 'Lato',sans-serif;
+    font-weight: 400;
+    // font-size: 16px;
+    line-height: 1.7;
+    color: $text-primary;
+}
+
+.header-xl{
+    font-size: 2.8rem;
+    font-weight: 700;
+    color:#013243; //#1f1e1ec4
+}
+
+.header-lg{
+    font-size: 2rem;
+}
+.header-md{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color:#0133439c//#666464;
+}
+
+.header-sm{
+    font-size: 1.25rem;
+    font-weight: 700;
+    color:#0133439c//#666464;
+}
+
+
+.txt-hd-sl{
+    background-color: $background-light;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color:#013243;
+    // Ex. sdsfas...
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 15rem;
+}
+.txt-hd-ml{
+    background-color: $background-light;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color:#013243;
+    // To wrap long multiline text 
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+    padding: 1rem 0rem;
+    //max-width: 150px;
+}
+
+.txt-strong{
+    background-color: $background-light;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color:#013243;
+}
+

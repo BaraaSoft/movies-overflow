@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    background-color: $background;
+}
+
+html {
+    // This defines what 1rem  == 10px
+    font-size:62.5%;  
+}
+
+body {
+    padding: 0px;
+    box-sizing: border-box;
+}

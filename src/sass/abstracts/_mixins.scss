@@ -1,0 +1,51 @@
+@mixin clear-fix {
+    &::after{
+        content: "";
+        clear: both;
+        display: table;
+    }
+}
+
+@mixin mx-row {
+    max-width: $grid-width;
+    margin: 0 auto;
+    
+    &:not(:last-child){
+        margin-bottom: $gutter-vertical;
+    }
+
+    @include clear-fix;
+
+    [class^="col-"],
+    [class^="tab-content"],
+    [class^="card-item"]
+    {
+         float: left;
+         &:not(:last-child){
+             margin-right:$gutter-horizontal;
+         }
+    }
+
+    [class^="tab-content"]{
+         float: left;
+         &:not(:last-child){
+             margin-right:$gutter-horizontal;
+         }
+    }
+}
+
+@mixin center-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@mixin center-vh {
+    background-color: $background-light;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
