@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import { MenuGenreReducer } from './menu/menu.reducer';
-import { PopularMoviesReducer, NowPlayingMoviesReducer } from './featureList'
+import { PopularMoviesReducer, NowPlayingMoviesReducer, UpcomingMoviesReducer, PopularTVReducer } from './featureList'
 
 
 
 export default combineReducers({
     menuGenre: MenuGenreReducer,
     popularMovies: PopularMoviesReducer,
-    nowPlayingMovies: NowPlayingMoviesReducer
+    nowPlayingMovies: NowPlayingMoviesReducer,
+    upcommingMovies: UpcomingMoviesReducer,
+    popularTVs: PopularTVReducer
 });

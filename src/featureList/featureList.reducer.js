@@ -1,10 +1,8 @@
 
 import { ActionTypes } from '../actionTypes';
-import _ from 'lodash'
-_.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+import _ from 'lodash';
 
 export const PopularMoviesReducer = (state = [], action) => {
-    console.log(action.payload)
     if (action.type === ActionTypes.MOVIES_MOSTPOPULAR) {
         return _.uniqBy([...action.payload, ...state], "id");
     }
@@ -12,8 +10,21 @@ export const PopularMoviesReducer = (state = [], action) => {
 }
 
 export const NowPlayingMoviesReducer = (state = [], action) => {
-    console.log(action.payload)
     if (action.type === ActionTypes.MOVIES_NOWPLAYING) {
+        return _.uniqBy([...action.payload, ...state], "id");
+    }
+    return state;
+}
+
+export const UpcomingMoviesReducer = (state = [], action) => {
+    if (action.type === ActionTypes.MOVIES_UPCOMING) {
+        return _.uniqBy([...action.payload, ...state], "id");
+    }
+    return state;
+}
+
+export const PopularTVReducer = (state = [], action) => {
+    if (action.type === ActionTypes.TVS_MOSTPOPULAR) {
         return _.uniqBy([...action.payload, ...state], "id");
     }
     return state;

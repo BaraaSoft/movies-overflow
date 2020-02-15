@@ -21,3 +21,21 @@ export const fetchNowPlaying = (page) => async (dispatch) => {
         payload: response.data.results
     });
 }
+
+export const fetchUpcomingMovies = (page) => async (dispatch) => {
+    const response = await https.get('/movie/upcoming',
+        { params: { api_key: 'b52327a9c201390c336b46ebee1c395b', page } });
+    dispatch({
+        type: ActionTypes.MOVIES_UPCOMING,
+        payload: response.data.results
+    });
+}
+
+export const fetchPopularTv = (page) => async (dispatch) => {
+    const response = await https.get('/tv/popular',
+        { params: { api_key: 'b52327a9c201390c336b46ebee1c395b', page } });
+    dispatch({
+        type: ActionTypes.TVS_MOSTPOPULAR,
+        payload: response.data.results
+    });
+}
