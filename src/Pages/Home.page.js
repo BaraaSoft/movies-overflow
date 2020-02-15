@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { TopMenu } from '../menu';
 
 
 export const HomePage = (props) => {
     return (
         <div>
-            Hi! there I'm the home Page.
+            <TopMenu />
         </div>
     );
 }
