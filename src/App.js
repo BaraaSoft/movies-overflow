@@ -22,7 +22,7 @@ function App() {
 
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/movies/:movieId" component={MovieDetailsPage} />
+        <Route path="/details/:id" component={MovieDetailsPage} />
         <Route path="/404" component={NotFoundPage} />
         <Redirect to="/404" />
       </Switch>

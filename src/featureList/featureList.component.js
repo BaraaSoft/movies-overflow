@@ -130,17 +130,19 @@ const RenderTopGenre = ({ topGenre = ['Action', 'Drama', 'Comedy', 'Horror'] }) 
     );
 }
 
-const RenderListItem = ({ data = [] }) => {
+const RenderListItem = ({ data = [], isMovies = true }) => {
     return data.map((item) => {
         return (
             <Badge count={item.vote_average} overflowCount={10} style={{ backgroundColor: '#FFA500' }} >
-                <DivImageContainer className='elevate-3'>
-                    <DivImage src={getImageUrl(item.poster_path)} />
-                    <DivImageTitle>
-                        <p>{item.title}</p>
-                    </DivImageTitle>
-                    <DivOverlay></DivOverlay>
-                </DivImageContainer>
+                <Link to={`/details/${item.id}?isMovies=${isMovies}`}>
+                    <DivImageContainer className='elevate-3'>
+                        <DivImage src={getImageUrl(item.poster_path)} />
+                        <DivImageTitle>
+                            <p>{item.title}</p>
+                        </DivImageTitle>
+                        <DivOverlay></DivOverlay>
+                    </DivImageContainer>
+                </Link>
             </Badge>)
     });
 }
