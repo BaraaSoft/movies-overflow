@@ -8,3 +8,6 @@ export const https = axios.create({
     }
 });
 
+export const getImageUrl = (relativeUrl) => {
+    return `https://image.tmdb.org/t/p/original${relativeUrl}`;
+}

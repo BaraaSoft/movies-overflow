@@ -1,5 +1,5 @@
 import { https } from '../https';
-import { ActionTypes } from './actionTypes';
+import { ActionTypes } from '../actionTypes';
 
 
 

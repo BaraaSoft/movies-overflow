@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
-import { Button, Icon } from 'antd';
+import React, { Component, Fragment } from 'react';
+import { Button, Icon, Badge } from 'antd';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { getImageUrl } from '../https';
+
 
 const DivContainer = styled.div`
-    margin:6em 6em;
-
     width:100%;
+    margin-top:4em;
+    overflow: hidden;
 `
 
 const DivSubcontainer = styled.div`
+    margin:.5em 6em;
     display:flex;
     justify-content:flex-start;
     width:100%;
-
 `;
 
 const DivTitle = styled.div`
-   width:100%;
+    width:100%;
     display:flex;
     font-size:26px;
     color:#b1b1b1;
@@ -30,6 +33,7 @@ const DivSubtitleList = styled.div`
     justify-content:flex-start;
     padding-top:6px;
     padding-left:16px;
+   
 
 `
 const Divsubtitle = styled.div`
@@ -52,34 +56,116 @@ const DivsubtitleLast = styled(Divsubtitle)`
      &:hover{
         border-bottom:1px solid transparent;
     }
-`
+`;
 
 
+const DivImageList = styled.div`
+    overflow-x: auto;
+    width:100%;
+    display:flex;
+    padding-top: 14px;
+`;
+
+const DivImageContainer = styled.div`
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    width:300px;
+    height: 380px;
+    margin:32px;
+    margin-top:0px;
+    overflow:hidden;
+    position:relative;
+
+    border-radius:3px;
+    overflow:hidden;
+
+    margin-right:0px;
+`;
+
+const DivImage = styled.img`
+    height: 100%;
+    width: 100%;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.6s ease;
+`;
+const DivImageTitle = styled.div`
+    z-index: 10;
+    width:100%;
+    color: #fff;
+    font-size:16px;
+    margin:auto 8px;
+    overflow-wrap: break-word;
+    position:absolute;
+    
+    bottom: 8px;
+    display:flex;
+    justify-content:center;
+`;
 
 
+const DivOverlay = styled.div`
+    height: 100%;
+    width: 100%;
+    z-index:5;
+    background:linear-gradient(0deg, rgba(0,0,0,0.8281687675070029) 0%, rgba(0,0,0,0.6348914565826331) 13%, rgba(255,255,255,0) 22%);
+    position:absolute;
+    top:0;
+`;
+
+
+const RenderTopGenre = ({ topGenre = ['Action', 'Drama', 'Comedy', 'Horror'] }) => {
+    return (
+        <DivSubtitleList>
+            {
+                topGenre.map((genre, index) => {
+                    if (index > 5) return null
+                    return (
+                        <Divsubtitle>{genre}</Divsubtitle>
+                    );
+                })
+            }
+        </DivSubtitleList>
+    );
+}
+
+const RenderListItem = ({ data = [] }) => {
+    return data.map((item) => {
+        return (
+            <Badge count={item.vote_average} overflowCount={10} style={{ backgroundColor: '#FFA500' }} >
+                <DivImageContainer className='elevate-3'>
+                    <DivImage src={getImageUrl(item.poster_path)} />
+                    <DivImageTitle>
+                        <p>{item.title}</p>
+                    </DivImageTitle>
+                    <DivOverlay></DivOverlay>
+                </DivImageContainer>
+            </Badge>)
+    });
+}
 
 
 const FeatureList = (props) => {
+    const { title, moreUrl, topGenre, data } = props;
     return (
         <DivContainer>
             <DivSubcontainer>
                 <DivTitle>
-                    <div>Lastest Movies</div>
-
-                    <DivSubtitleList>
-                        <Divsubtitle>All</Divsubtitle>
-                        <Divsubtitle>Action</Divsubtitle>
-                        <Divsubtitle>Comedy</Divsubtitle>
-                        <Divsubtitle>Horror</Divsubtitle>
-                        <Divsubtitle>Drama</Divsubtitle>
-                    </DivSubtitleList>
+                    <div>{title}</div>
+                    <RenderTopGenre topGenre={topGenre} />
                     <DivsubtitleLast>
-                        <Button type="dashed">
-                            More<Icon type="double-right" />
-                        </Button>
+                        <Link to={moreUrl} >
+                            <Button type="dashed">
+                                More<Icon type="double-right" />
+                            </Button>
+                        </Link>
                     </DivsubtitleLast>
                 </DivTitle>
             </DivSubcontainer>
+            <DivImageList>
+                <RenderListItem data={data} />
+            </DivImageList>
         </DivContainer>
     );
 }

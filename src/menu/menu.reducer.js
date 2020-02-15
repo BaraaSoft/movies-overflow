@@ -1,5 +1,5 @@
 
-import { ActionTypes } from './actionTypes';
+import { ActionTypes } from '../actionTypes';
 
 
 export const MenuGenreReducer = (state = [], action) => {
