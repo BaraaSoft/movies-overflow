@@ -70,7 +70,7 @@ const GenreSubGroup = ({ menuGenre }) => {
                     )
                 })
             }
-            <SubMenu key="sub2" title="more">
+            <SubMenu key="sub2" title="More">
                 {menuGenre.map((genre, index) => {
                     if (index < Math.floor(menuGenre.length / 2)) return null;
                     return (
@@ -88,22 +88,3 @@ const mapStateToProps = ({ menuGenre }) => {
 
 const TopMenu = connect(mapStateToProps, { fetchGenre })(TopMenuComponent)
 export { TopMenu };
-
-
-// <Menu.Item key="setting:2">Option 2</Menu.Item>
-
-//     <Menu.Item key="setting:1">Option 1</Menu.Item>
-//     <Menu.Item key="setting:2">Option 2</Menu.Item>
-//     <Menu.Item key="setting:1">Option 1</Menu.Item>
-//     <Menu.Item key="setting:2">Option 2</Menu.Item>
-//     <Menu.Item key="setting:1">Option 1</Menu.Item>
-//     <Menu.Item key="setting:2">Option 2</Menu.Item>
-//     <Menu.Item key="setting:1">Option 1</Menu.Item>
-//     <Menu.Item key="setting:2">Option 2</Menu.Item>
-
-// <DivHorizontal title="choose your genre">
-//     <DivItem key="setting:1">Option 1</DivItem>
-//     <DivItem key="setting:3">Option 1</DivItem>
-//     <DivItem key="setting:2">Option 1</DivItem>
-//     <DivItem key="setting:4">Option 1</DivItem>
-// </DivHorizontal>
