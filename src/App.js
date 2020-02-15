@@ -12,6 +12,8 @@ import { NotFoundPage } from './Pages/NotFound.page';
 import { MovieDetailsPage } from './Pages/MovieDetails.page';
 import { HomePage } from './Pages/Home.page';
 
+import reducers from './base.reducers'
+
 
 
 function App() {
