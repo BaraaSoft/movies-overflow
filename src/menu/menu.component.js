@@ -5,9 +5,16 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { fetchGenre } from './menu.action'
+import { fetchGenre } from './menu.action';
+import { SearchBox } from './search.component'
 
 const { SubMenu } = Menu;
+
+
+const DivSearchContainer = styled(Menu.Item)`
+    width:480px;
+    margin-left:10%;
+`;
 
 
 class TopMenuComponent extends React.Component {
@@ -29,7 +36,7 @@ class TopMenuComponent extends React.Component {
     render() {
         const { menuGenre } = this.props;
         return (
-            <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+            <Menu style={{ overflow: 'hidden' }} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
                 <Menu.Item />
                 <Menu.Item />
                 <Menu.Item key="home">
@@ -53,6 +60,13 @@ class TopMenuComponent extends React.Component {
                         Most recent
                     </Link>
                 </Menu.Item>
+
+                <DivSearchContainer disabled>
+                    <SearchBox />
+                </DivSearchContainer>
+
+
+
             </Menu>
         );
     }

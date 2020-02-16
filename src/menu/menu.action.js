@@ -10,3 +10,18 @@ export const fetchGenre = () => async (dispatch) => {
         payload: response.data.genres
     });
 }
+
+export const searchMovieByName = (query) => async (dispatch) => {
+    const response = await https.get('/search/movie',
+        {
+            params: {
+                api_key: 'b52327a9c201390c336b46ebee1c395b',
+                language: 'en-US',
+                query
+            }
+        });
+    dispatch({
+        type: ActionTypes.MENU_SEARCH,
+        payload: response.data.results
+    });
+}

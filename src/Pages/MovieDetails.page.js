@@ -1,12 +1,9 @@
 import React, { Component, useEffect, useState } from 'react';
 import {
-    Link,
     useParams,
-    Redirect,
     useLocation,
-    BrowserRouter
 } from "react-router-dom";
-import { PageHeader, Descriptions } from 'antd';
+import { PageHeader } from 'antd';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
