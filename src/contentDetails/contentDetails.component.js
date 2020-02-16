@@ -142,7 +142,10 @@ const ContentDetails = (props) => {
                     </Descriptions.Item>
                     <Descriptions.Item label="Production country">{parseCountry(data)}</Descriptions.Item>
                     <Descriptions.Item label="Release Date">{moment(data.release_date).format("MMMM Do YYYY")}</Descriptions.Item>
-                    <Descriptions.Item label="Overview">{data.overview}</Descriptions.Item>
+
+                </Descriptions>
+                <Descriptions title={'Overview'} >
+                    <Descriptions.Item label="">{data.overview}</Descriptions.Item>
                 </Descriptions>
             </DivSplitTwo>
         </DivContainer>

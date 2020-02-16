@@ -2,7 +2,11 @@ import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux'
 import styled from 'styled-components';
 import { TopMenu } from '../menu';
-import { FeatureList, fetchPopularMovies, fetchNowPlaying, fetchPopularTv, fetchUpcomingMovies } from '../featureList';
+import {
+    FeatureList, fetchPopularMovies,
+    fetchNowPlaying, fetchPopularTv,
+    fetchUpcomingMovies, fetchTrendingMovies
+} from '../featureList';
 
 
 const SpaceTop = styled.div`
@@ -12,15 +16,16 @@ const SpaceTop = styled.div`
 export const HomePageComponent = (props) => {
     const {
         popularMovies, nowPlayingMovies,
-        upcommingMovies, popularTVs,
+        upcommingMovies, popularTVs, trendingMovies,
         fetchPopularMovies, fetchNowPlaying,
-        fetchPopularTv, fetchUpcomingMovies
+        fetchPopularTv, fetchUpcomingMovies, fetchTrendingMovies
     } = props
     useEffect(() => {
         fetchPopularMovies(1);
         fetchNowPlaying(1);
         fetchUpcomingMovies(1);
-        fetchPopularTv(1)
+        fetchPopularTv(1);
+        fetchTrendingMovies();
     }, [])
     return (
         <div>
@@ -30,6 +35,11 @@ export const HomePageComponent = (props) => {
                 data={popularMovies}
                 title="Most Popular"
                 moreUrl={'/search/popular_movies'}
+                topGenre={['Action', 'Drama', 'Comdey', 'Horror']} />
+            <FeatureList
+                data={trendingMovies}
+                title="Trending"
+                moreUrl={'/search/trending_movies'}
                 topGenre={['Action', 'Drama', 'Comdey', 'Horror']} />
             <FeatureList
                 data={nowPlayingMovies}
@@ -53,14 +63,14 @@ export const HomePageComponent = (props) => {
 }
 
 
-const mapStateToProps = ({ popularMovies, nowPlayingMovies, upcommingMovies, popularTVs }) => {
-    return { popularMovies, nowPlayingMovies, upcommingMovies, popularTVs }
+const mapStateToProps = ({ popularMovies, nowPlayingMovies, upcommingMovies, popularTVs, trendingMovies }) => {
+    return { popularMovies, nowPlayingMovies, upcommingMovies, popularTVs, trendingMovies }
 }
 
 const HomePage = connect(mapStateToProps,
     {
         fetchPopularMovies, fetchNowPlaying,
-        fetchPopularTv, fetchUpcomingMovies
+        fetchPopularTv, fetchUpcomingMovies, fetchTrendingMovies
     }
 )(HomePageComponent);
 

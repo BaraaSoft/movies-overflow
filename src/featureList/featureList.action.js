@@ -39,3 +39,12 @@ export const fetchPopularTv = (page) => async (dispatch) => {
         payload: response.data.results
     });
 }
+
+export const fetchTrendingMovies = (page) => async (dispatch) => {
+    const response = await https.get('/trending/all/day',
+        { params: { api_key: 'b52327a9c201390c336b46ebee1c395b', page } });
+    dispatch({
+        type: ActionTypes.MOVIES_TRENDING,
+        payload: response.data.results
+    });
+}

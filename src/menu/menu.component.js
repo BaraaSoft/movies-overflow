@@ -64,9 +64,6 @@ class TopMenuComponent extends React.Component {
                 <DivSearchContainer disabled>
                     <SearchBox />
                 </DivSearchContainer>
-
-
-
             </Menu>
         );
     }

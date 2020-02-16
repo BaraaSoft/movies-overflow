@@ -29,3 +29,10 @@ export const PopularTVReducer = (state = [], action) => {
     }
     return state;
 }
+
+export const TrendingMoviesReducer = (state = [], action) => {
+    if (action.type === ActionTypes.MOVIES_TRENDING) {
+        return _.uniqBy([...action.payload, ...state], "id");
+    }
+    return state;
+}
