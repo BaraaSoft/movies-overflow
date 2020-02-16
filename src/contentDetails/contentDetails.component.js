@@ -58,7 +58,7 @@ const ActorList = (props) => {
     return actors.map(actor => {
         return (
             <Link to={`/actors/${actor.id}?name=${actor.name}`}>
-                <Tag key={actor.id} color="blue">{actor.name}</Tag>
+                <Tag style={{ cursor: 'pointer' }} key={actor.id} color="blue">{actor.name}</Tag>
             </Link>
         );
     })
