@@ -1,6 +1,7 @@
 
 ## Task Movies Listing website 
 
+Open [https://baraasoft.github.io/movies-overflow/](https://baraasoft.github.io/movies-overflow/) to browser the website.
 
 ### `npm start`
 
