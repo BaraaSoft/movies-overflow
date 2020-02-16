@@ -43,6 +43,7 @@ export const HomePageComponent = (props) => {
                 moreUrl={'/search/upcoming'}
                 topGenre={['Action', 'Drama', 'Comdey', 'Horror']} />
             <FeatureList
+                isMovie={false}
                 data={popularTVs}
                 title="Popular TV Shows"
                 moreUrl={'/search/popular_tv'}

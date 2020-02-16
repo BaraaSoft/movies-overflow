@@ -130,11 +130,11 @@ const RenderTopGenre = ({ topGenre = ['Action', 'Drama', 'Comedy', 'Horror'] }) 
     );
 }
 
-const RenderListItem = ({ data = [], isMovies = true }) => {
+const RenderListItem = ({ data = [], isMovie = true }) => {
     return data.map((item) => {
         return (
             <Badge count={item.vote_average} overflowCount={10} style={{ backgroundColor: '#FFA500' }} >
-                <Link to={`/details/${item.id}?isMovies=${isMovies}`}>
+                <Link to={`/details/${item.id}?isMovies=${isMovie}&title=${item.title || "TV"}`}>
                     <DivImageContainer className='elevate-3'>
                         <DivImage src={getImageUrl(item.poster_path)} />
                         <DivImageTitle>
@@ -147,26 +147,33 @@ const RenderListItem = ({ data = [], isMovies = true }) => {
     });
 }
 
+const RenderMore = ({ moreUrl }) => {
+    return (moreUrl ?
+        (
+            <DivsubtitleLast>
+                <Link to={moreUrl} >
+                    <Button type="dashed">
+                        More<Icon type="double-right" />
+                    </Button>
+                </Link>
+            </DivsubtitleLast>
+        ) : null)
+}
+
 
 const FeatureList = (props) => {
-    const { title, moreUrl, topGenre, data } = props;
+    const { title, moreUrl, topGenre, data, isMovie } = props;
     return (
         <DivContainer>
             <DivSubcontainer>
                 <DivTitle>
                     <div>{title}</div>
-                    <RenderTopGenre topGenre={topGenre} />
-                    <DivsubtitleLast>
-                        <Link to={moreUrl} >
-                            <Button type="dashed">
-                                More<Icon type="double-right" />
-                            </Button>
-                        </Link>
-                    </DivsubtitleLast>
+                    {topGenre && (<RenderTopGenre topGenre={topGenre} />)}
+                    <RenderMore moreUrl={moreUrl} />
                 </DivTitle>
             </DivSubcontainer>
             <DivImageList>
-                <RenderListItem data={data} />
+                <RenderListItem data={data} isMovie={isMovie} />
             </DivImageList>
         </DivContainer>
     );

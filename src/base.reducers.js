@@ -1,6 +1,11 @@
 import { combineReducers } from 'redux';
 import { MenuGenreReducer } from './menu/menu.reducer';
-import { PopularMoviesReducer, NowPlayingMoviesReducer, UpcomingMoviesReducer, PopularTVReducer } from './featureList'
+import {
+    PopularMoviesReducer, NowPlayingMoviesReducer,
+    UpcomingMoviesReducer, PopularTVReducer
+} from './featureList';
+
+import { MovieDetailsReducer, SimilarMoviesReducer } from './contentDetails'
 
 
 
@@ -9,5 +14,7 @@ export default combineReducers({
     popularMovies: PopularMoviesReducer,
     nowPlayingMovies: NowPlayingMoviesReducer,
     upcommingMovies: UpcomingMoviesReducer,
-    popularTVs: PopularTVReducer
+    popularTVs: PopularTVReducer,
+    movieDetails: MovieDetailsReducer,
+    similarMovies: SimilarMoviesReducer
 });
