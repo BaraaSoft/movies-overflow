@@ -25,7 +25,6 @@ export const fetchTvDetails = (id) => async (dispatch) => {
 export const fetchSimilarMovies = (id) => async (dispatch) => {
     const response = await https.get(`/movie/${id}/similar`,
         { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
-    console.log({ res: response.data.results })
     dispatch({
         type: ActionTypes.MOVIES_SIMILAR,
         payload: response.data.results
@@ -36,7 +35,6 @@ export const fetchSimilarMovies = (id) => async (dispatch) => {
 export const fetchMovieActors = (id) => async (dispatch) => {
     const response = await https.get(`/movie/${id}/credits`,
         { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
-    console.log({ res: response.data.results })
     dispatch({
         type: ActionTypes.MOVIE_ACTORS,
         payload: response.data.cast

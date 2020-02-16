@@ -19,7 +19,7 @@ import reducers from './base.reducers'
 
 function App() {
   return (
-    <Router>
+    <Router basename={"/movies-overflow"}>
 
       <Switch>
         <Route exact path="/" component={HomePage} />
