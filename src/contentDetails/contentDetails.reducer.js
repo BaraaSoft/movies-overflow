@@ -17,3 +17,29 @@ export const SimilarMoviesReducer = (state = [], action) => {
     }
     return state;
 }
+
+
+export const MovieActorsReducer = (state = [], action) => {
+    if (action.type === ActionTypes.MOVIE_ACTORS) {
+        return _.uniqBy([...action.payload, ...state], "id");
+    }
+    return state;
+}
+
+
+export const ActorsAllMoviesReducer = (state = [], action) => {
+    if (action.type === ActionTypes.ACTOR_ALL_MOVIES) {
+        return _.uniqBy([...action.payload, ...state], "id");
+    }
+    return state;
+}
+
+
+export const ActorDetailsReducer = (state = {}, action) => {
+    if (action.type === ActionTypes.ACTOR_DETAILS) {
+        return { ...action.payload };
+    }
+    return state;
+}
+
+

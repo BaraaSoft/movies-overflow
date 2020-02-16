@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import { FeatureList } from '../featureList'
 import { ContentDetails } from '../contentDetails';
-import { fetchMovieDetails, fetchTvDetails, fetchSimilarMovies } from '../contentDetails'
+import { fetchMovieDetails, fetchTvDetails, fetchSimilarMovies, fetchMovieActors } from '../contentDetails'
 
 
 
@@ -41,10 +41,14 @@ export const MovieDetailsPageComponent = (props) => {
     const location = useLocation();
     let isMovies = useQuery().get('isMovies');
     let title = useQuery().get('title');
-    const { fetchMovieDetails, fetchTvDetails, fetchSimilarMovies, movieDetails, similarMovies } = props;
+    const {
+        fetchMovieDetails, fetchTvDetails, fetchMovieActors,
+        fetchSimilarMovies, movieDetails, similarMovies, movieActors
+    } = props;
     useEffect(() => {
         isMovies == 'true' ? fetchMovieDetails(id) : fetchTvDetails(id);
         fetchSimilarMovies(id);
+        fetchMovieActors(id);
 
     }, [location]);
     return (
@@ -52,11 +56,11 @@ export const MovieDetailsPageComponent = (props) => {
             <PageHeader
                 style={{ border: '1px solid rgb(235, 237, 240)' }}
                 onBack={() => props.history.push("/")}
-                title="Home"
+                title="Details"
                 subTitle={title}
             />
             <DivBody>
-                <ContentDetails data={movieDetails} />
+                <ContentDetails data={movieDetails} movieActors={movieActors} />
                 <FeatureList
                     data={similarMovies}
                     title="Similar Movies" />
@@ -67,9 +71,13 @@ export const MovieDetailsPageComponent = (props) => {
 
 
 
-const mapStateToProps = ({ movieDetails, similarMovies }) => {
-    return { movieDetails, similarMovies };
+const mapStateToProps = ({ movieDetails, similarMovies, movieActors }) => {
+    return { movieDetails, similarMovies, movieActors };
 }
 
-const MovieDetailsPage = connect(mapStateToProps, { fetchMovieDetails, fetchTvDetails, fetchSimilarMovies })(MovieDetailsPageComponent)
+const MovieDetailsPage = connect(mapStateToProps,
+    {
+        fetchMovieDetails, fetchTvDetails,
+        fetchSimilarMovies, fetchMovieActors
+    })(MovieDetailsPageComponent)
 export { MovieDetailsPage };

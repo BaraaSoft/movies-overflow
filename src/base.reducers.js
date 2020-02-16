@@ -3,10 +3,10 @@ import { MenuGenreReducer, SearchedMoviesReducer } from './menu/menu.reducer';
 import {
     PopularMoviesReducer, NowPlayingMoviesReducer,
     UpcomingMoviesReducer, PopularTVReducer,
-    TrendingMoviesReducer
+    TrendingMoviesReducer,
 } from './featureList';
 
-import { MovieDetailsReducer, SimilarMoviesReducer } from './contentDetails'
+import { MovieDetailsReducer, SimilarMoviesReducer, MovieActorsReducer, ActorDetailsReducer, ActorsAllMoviesReducer } from './contentDetails'
 
 
 
@@ -19,5 +19,8 @@ export default combineReducers({
     popularTVs: PopularTVReducer,
     movieDetails: MovieDetailsReducer,
     similarMovies: SimilarMoviesReducer,
-    trendingMovies: TrendingMoviesReducer
+    trendingMovies: TrendingMoviesReducer,
+    movieActors: MovieActorsReducer,
+    actorDetails: ActorDetailsReducer,
+    actorAllMovies: ActorsAllMoviesReducer
 });

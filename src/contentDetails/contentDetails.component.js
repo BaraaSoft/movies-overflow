@@ -12,81 +12,10 @@ import moment from 'moment'
 import { getImageUrl } from '../https';
 
 
-const DivContainer = styled.div`
-    width:70%;
-    min-width:1140px;
-    height:50vh;
-    position:relative;
-    display:flex;
-    margin-top:8em;
-    margin-bottom:.2em;
-`
-
-/** content design **/
-const SectionImage = styled.div`
-    position:absolute;
-    top:-20%;
-`
-
-const DivImageContainer = styled.div`
-    flex: 0 0 auto;
-    flex-shrink: 0;
-    width:300px;
-    height: 380px;
-    margin:32px;
-    margin-top:0px;
-    overflow:hidden;
-    position:relative;
-
-    border-radius:3px;
-    overflow:hidden;
-
-    margin-right:0px;
-`;
-
-const DivImage = styled.img`
-    height: 100%;
-    width: 100%;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: all 0.6s ease;
-`;
-const DivImageTitle = styled.div`
-    z-index: 10;
-    width:100%;
-    color: #fff;
-    font-size:16px;
-    margin:auto 8px;
-    overflow-wrap: break-word;
-    position:absolute;
-    
-    bottom: 8px;
-    display:flex;
-    justify-content:center;
-`;
-
-
-const DivOverlay = styled.div`
-    height: 100%;
-    width: 100%;
-    z-index:5;
-    background:linear-gradient(0deg, rgba(0,0,0,0.8281687675070029) 0%, rgba(0,0,0,0.6348914565826331) 13%, rgba(255,255,255,0) 22%);
-    position:absolute;
-    top:0;
-`;
-
-/** Description Design **/
-const DivSplitOne = styled.div`
-    flex:1;
-    min-width:350px;
-`;
-
-const DivSplitTwo = styled.div`
-    flex:3;
-    overflow-y:auto;
-    margin:32px 32px;
-`;
+import {
+    SectionImage, DivImageContainer, DivImage, DivImageTitle,
+    DivOverlay, DivContainer, DivSplitOne, DivSplitTwo
+} from './details.style';
 
 
 const parseCountry = (data) => {
@@ -124,10 +53,21 @@ const MovieCard = (props) => {
 
 }
 
+const ActorList = (props) => {
+    const { actors } = props;
+    return actors.map(actor => {
+        return (
+            <Link to={`/actors/${actor.id}?name=${actor.name}`}>
+                <Tag key={actor.id} color="blue">{actor.name}</Tag>
+            </Link>
+        );
+    })
+}
+
 
 const ContentDetails = (props) => {
 
-    const { data } = props
+    const { data, movieActors } = props
 
     return (
         <DivContainer className="elevate-1">
@@ -146,6 +86,11 @@ const ContentDetails = (props) => {
                 </Descriptions>
                 <Descriptions title={'Overview'} >
                     <Descriptions.Item label="">{data.overview}</Descriptions.Item>
+                </Descriptions>
+                <Descriptions title={'Cast'} >
+                    <Descriptions.Item label="">
+                        <ActorList actors={movieActors} />
+                    </Descriptions.Item>
                 </Descriptions>
             </DivSplitTwo>
         </DivContainer>
