@@ -28,6 +28,7 @@ function App() {
         <Route path="/404" component={NotFoundPage} />
         <Redirect to="/404" />
       </Switch>
+      <div className="footer"> Copyright © 2020-2021 MoviesOverflow All Rights Reserved </div>
     </Router>
   );
 }
