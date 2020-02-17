@@ -3,10 +3,10 @@ import { MenuGenreReducer, SearchedMoviesReducer } from './menu/menu.reducer';
 import {
     PopularMoviesReducer, NowPlayingMoviesReducer,
     UpcomingMoviesReducer, PopularTVReducer,
-    TrendingMoviesReducer,
+    TrendingMoviesReducer
 } from './featureList';
 
-import { MovieDetailsReducer, SimilarMoviesReducer, MovieActorsReducer, ActorDetailsReducer, ActorsAllMoviesReducer } from './contentDetails'
+import { MovieDetailsReducer, SimilarMoviesReducer, MovieActorsReducer, ActorDetailsReducer, ActorsAllMoviesReducer, SimilarTvsReducer } from './contentDetails'
 
 
 
@@ -19,6 +19,7 @@ export default combineReducers({
     popularTVs: PopularTVReducer,
     movieDetails: MovieDetailsReducer,
     similarMovies: SimilarMoviesReducer,
+    similarTvs: SimilarTvsReducer,
     trendingMovies: TrendingMoviesReducer,
     movieActors: MovieActorsReducer,
     actorDetails: ActorDetailsReducer,

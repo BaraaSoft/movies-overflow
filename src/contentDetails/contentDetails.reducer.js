@@ -17,6 +17,13 @@ export const SimilarMoviesReducer = (state = [], action) => {
     return state;
 }
 
+export const SimilarTvsReducer = (state = [], action) => {
+    if (action.type === ActionTypes.TVS_SIMILAR) {
+        return _.uniqBy([...action.payload, ...state], "id");
+    }
+    return state;
+}
+
 
 export const MovieActorsReducer = (state = [], action) => {
     if (action.type === ActionTypes.MOVIE_ACTORS) {

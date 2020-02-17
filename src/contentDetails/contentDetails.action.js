@@ -31,9 +31,20 @@ export const fetchSimilarMovies = (id) => async (dispatch) => {
     });
 }
 
+export const fetchSimilarTvs = (id) => async (dispatch) => {
+    const response = await https.get(`/tv/${id}/similar`,
+        { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+    dispatch({
+        type: ActionTypes.TVS_SIMILAR,
+        payload: response.data.results
+    });
+}
 
-export const fetchMovieActors = (id) => async (dispatch) => {
-    const response = await https.get(`/movie/${id}/credits`,
+
+export const fetchMovieActors = (id, isMovie = true) => async (dispatch) => {
+    let url = isMovie ? `/movie/${id}/credits` : `/tv/${id}/credits`;
+
+    const response = await https.get(url,
         { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
     dispatch({
         type: ActionTypes.MOVIE_ACTORS,
@@ -41,8 +52,9 @@ export const fetchMovieActors = (id) => async (dispatch) => {
     });
 };
 
-export const fetcActorAllMovies = (id) => async (dispatch) => {
-    const response = await https.get(`/person/${id}/movie_credits`,
+export const fetcActorAllMovies = (id, isMovie = true) => async (dispatch) => {
+    let url = isMovie ? `/person/${id}/movie_credits` : `/person/${id}/tv_credits`;
+    const response = await https.get(url,
         { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
     dispatch({
         type: ActionTypes.ACTOR_ALL_MOVIES,

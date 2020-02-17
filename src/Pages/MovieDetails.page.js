@@ -9,7 +9,10 @@ import { connect } from 'react-redux';
 
 import { FeatureList } from '../featureList'
 import { ContentDetails } from '../contentDetails';
-import { fetchMovieDetails, fetchTvDetails, fetchSimilarMovies, fetchMovieActors } from '../contentDetails'
+import {
+    fetchMovieDetails, fetchTvDetails,
+    fetchSimilarMovies, fetchMovieActors, fetchSimilarTvs
+} from '../contentDetails'
 
 
 
@@ -42,15 +45,25 @@ export const MovieDetailsPageComponent = (props) => {
     let isMovies = useQuery().get('isMovies');
     let title = useQuery().get('title');
     const {
-        fetchMovieDetails, fetchTvDetails, fetchMovieActors,
-        fetchSimilarMovies, movieDetails, similarMovies, movieActors
+        fetchMovieDetails, fetchTvDetails, fetchMovieActors, fetchSimilarTvs,
+        fetchSimilarMovies, movieDetails, similarMovies, movieActors, similarTvs
     } = props;
+    let similarShowListData = isMovies == 'true' ? similarMovies : similarTvs;
     useEffect(() => {
-        isMovies == 'true' ? fetchMovieDetails(id) : fetchTvDetails(id);
-        fetchSimilarMovies(id);
-        fetchMovieActors(id);
+        let isMovie = isMovies == 'true';
+        if (isMovie) {
 
+            fetchMovieDetails(id);
+            fetchSimilarMovies(id);
+        } else {
+
+            fetchSimilarTvs(id);
+            fetchTvDetails(id);
+        }
+        fetchMovieActors(id, isMovie);
     }, [location]);
+
+
     return (
         <DivMain>
             <PageHeader
@@ -62,8 +75,9 @@ export const MovieDetailsPageComponent = (props) => {
             <DivBody className="light-scroll" >
                 <ContentDetails data={movieDetails} movieActors={movieActors} />
                 <FeatureList
-                    data={similarMovies}
-                    title="Similar Movies" />
+                    isMovie={isMovies == 'true'}
+                    data={similarShowListData}
+                    title={isMovies == 'true' ? "Similar Movies" : "Similar TV Show"} />
             </DivBody>
         </DivMain>
     );
@@ -71,13 +85,13 @@ export const MovieDetailsPageComponent = (props) => {
 
 
 
-const mapStateToProps = ({ movieDetails, similarMovies, movieActors }) => {
-    return { movieDetails, similarMovies, movieActors };
+const mapStateToProps = ({ movieDetails, similarMovies, movieActors, similarTvs }) => {
+    return { movieDetails, similarMovies, movieActors, similarTvs };
 }
 
 const MovieDetailsPage = connect(mapStateToProps,
     {
         fetchMovieDetails, fetchTvDetails,
-        fetchSimilarMovies, fetchMovieActors
+        fetchSimilarMovies, fetchMovieActors, fetchSimilarTvs
     })(MovieDetailsPageComponent)
 export { MovieDetailsPage };

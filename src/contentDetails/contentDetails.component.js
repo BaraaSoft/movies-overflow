@@ -67,9 +67,6 @@ const ActorList = (props) => {
 }
 
 function getEpisodesAverageRuntime(arrTimes = [1]) {
-    console.log({ arrTimes });
-    let time = arrTimes.reduce((accum, current) => accum + current, 0) / arrTimes.length;
-    console.log({ time })
     return arrTimes.reduce((accum, current) => accum + current, 0) / arrTimes.length;
 };
 const ContentDetails = (props) => {
