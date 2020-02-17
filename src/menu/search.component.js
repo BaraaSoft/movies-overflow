@@ -47,7 +47,7 @@ const SearchBoxComponent = (props) => {
             dataSource={searchedMovies.map(renderOption)}
             onSelect={(e) => ({})}
             onSearch={debounce((query) => searchMovieByName(query), 300)}
-            placeholder="input here"
+            placeholder="Search"
             optionLabelProp="text"
         >
             <Input
