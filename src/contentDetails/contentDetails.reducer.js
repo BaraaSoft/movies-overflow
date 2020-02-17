@@ -12,14 +12,14 @@ export const MovieDetailsReducer = (state = {}, action) => {
 
 export const SimilarMoviesReducer = (state = [], action) => {
     if (action.type === ActionTypes.MOVIES_SIMILAR) {
-        return _.uniqBy([...action.payload, ...state], "id");
+        return [...action.payload];
     }
     return state;
 }
 
 export const SimilarTvsReducer = (state = [], action) => {
     if (action.type === ActionTypes.TVS_SIMILAR) {
-        return _.uniqBy([...action.payload, ...state], "id");
+        return [...action.payload, ...state];
     }
     return state;
 }
@@ -27,7 +27,7 @@ export const SimilarTvsReducer = (state = [], action) => {
 
 export const MovieActorsReducer = (state = [], action) => {
     if (action.type === ActionTypes.MOVIE_ACTORS) {
-        return _.uniqBy([...action.payload, ...state], "id");
+        return [...action.payload];
     }
     return state;
 }
@@ -35,7 +35,7 @@ export const MovieActorsReducer = (state = [], action) => {
 
 export const ActorsAllMoviesReducer = (state = [], action) => {
     if (action.type === ActionTypes.ACTOR_ALL_MOVIES) {
-        return _.uniqBy([...action.payload, ...state], "id");
+        return [...action.payload];
     }
     return state;
 }
