@@ -28,6 +28,8 @@ const parseCountry = (data) => {
 function getTimeFromMins(mins) {
     if (mins >= 24 * 60 || mins < 0) {
         throw new RangeError("Valid input should be greater than or equal to 0 and less than 1440.");
+    } else if (mins < 60) {
+        return "Less than hour"
     }
     var h = mins / 60 | 0,
         m = mins % 60 | 0;
@@ -64,25 +66,32 @@ const ActorList = (props) => {
     })
 }
 
-
+function getEpisodesAverageRuntime(arrTimes = [1]) {
+    console.log({ arrTimes });
+    let time = arrTimes.reduce((accum, current) => accum + current, 0) / arrTimes.length;
+    console.log({ time })
+    return arrTimes.reduce((accum, current) => accum + current, 0) / arrTimes.length;
+};
 const ContentDetails = (props) => {
 
     const { data, movieActors } = props
+    const country = parseCountry(data);
 
+    const runtime = data.runtime || getEpisodesAverageRuntime(data.episode_run_time)
     return (
         <DivContainer className="elevate-1">
             <DivSplitOne>
-                <MovieCard title={data.title} imgUrl={data.poster_path} rate={data.vote_average} />
+                <MovieCard title={data.title || data.name} imgUrl={data.poster_path} rate={data.vote_average} />
             </DivSplitOne>
             <DivSplitTwo>
-                <Descriptions title={data.title}>
-                    <Descriptions.Item label="Headline">{data.tagline}</Descriptions.Item>
+                <Descriptions title={data.title || data.name}>
+                    {data.tagline && (<Descriptions.Item label="Headline">{data.tagline}</Descriptions.Item>)}
                     <Descriptions.Item label={<spn><Icon type="clock-circle" /> &nbsp; Length</spn>}>
-                        <span className="submenu-title-wrapper">{getTimeFromMins(data.runtime)}</span>
+                        <span className="submenu-title-wrapper">{getTimeFromMins(runtime)}</span>
                     </Descriptions.Item>
-                    <Descriptions.Item label="Production country">{parseCountry(data)}</Descriptions.Item>
+                    {country && (<Descriptions.Item label="Production country">{country}</Descriptions.Item>)}
                     <Descriptions.Item label="Release Date">{moment(data.release_date).format("MMMM Do YYYY")}</Descriptions.Item>
-
+                    {data.seasons && (<Descriptions.Item label="# seasons" >{data.seasons.length}</Descriptions.Item>)}
                 </Descriptions>
                 <Descriptions title={'Overview'} >
                     <Descriptions.Item label="">{data.overview}</Descriptions.Item>
