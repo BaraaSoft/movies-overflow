@@ -46,3 +46,19 @@
     -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
+
+
+.light-scroll{
+    &::-webkit-scrollbar {
+        width: 10px;
+        height:5px;
+    }
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 0 #fff ;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #00000019;
+      outline: 1px solid #00000026;
+      border-radius:4px;
+    }
+}

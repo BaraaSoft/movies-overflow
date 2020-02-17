@@ -172,7 +172,7 @@ const FeatureList = (props) => {
                     <RenderMore moreUrl={moreUrl} />
                 </DivTitle>
             </DivSubcontainer>
-            <DivImageList>
+            <DivImageList className="light-scroll">
                 <RenderListItem data={data} isMovie={isMovie} />
             </DivImageList>
         </DivContainer>

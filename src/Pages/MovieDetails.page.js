@@ -59,7 +59,7 @@ export const MovieDetailsPageComponent = (props) => {
                 title="Details"
                 subTitle={title}
             />
-            <DivBody>
+            <DivBody className="light-scroll" >
                 <ContentDetails data={movieDetails} movieActors={movieActors} />
                 <FeatureList
                     data={similarMovies}

@@ -53,7 +53,7 @@ const ActorDetailsPageComponent = (props) => {
                 title="Actor"
                 subTitle={name}
             />
-            <DivBody>
+            <DivBody className="light-scroll">
                 <ActorDetails data={actorDetails} />
                 <FeatureList
                     data={actorAllMovies}
