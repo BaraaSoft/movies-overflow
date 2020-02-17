@@ -41,7 +41,7 @@ export const fetchPopularTv = (page) => async (dispatch) => {
 }
 
 export const fetchTrendingMovies = (page) => async (dispatch) => {
-    const response = await https.get('/trending/all/day',
+    const response = await https.get('/trending/movie/day',
         { params: { api_key: 'b52327a9c201390c336b46ebee1c395b', page } });
     dispatch({
         type: ActionTypes.MOVIES_TRENDING,
