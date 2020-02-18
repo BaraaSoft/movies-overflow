@@ -19,7 +19,7 @@ export const SimilarMoviesReducer = (state = [], action) => {
 
 export const SimilarTvsReducer = (state = [], action) => {
     if (action.type === ActionTypes.TVS_SIMILAR) {
-        return [...action.payload, ...state];
+        return [...action.payload];
     }
     return state;
 }
