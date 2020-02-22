@@ -68,7 +68,7 @@ export const MovieDetailsPageComponent = (props) => {
         <DivMain>
             <PageHeader
                 style={{ border: '1px solid rgb(235, 237, 240)' }}
-                onBack={() => props.history.push("/")}
+                onBack={() => props.history.goBack()}
                 title="Details"
                 subTitle={title}
             />

@@ -1,13 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import { Button, Icon, Badge } from 'antd';
+import React, { Component, Fragment, useState, useEffect } from 'react';
+import { Button, Icon, Badge, Pagination } from 'antd';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getImageUrl } from '../https';
 
 
 const MainDiv = styled.div`
-    max-width: 1140px;
+    max-width: 95%;
     margin: 24px auto;
+    min-height:80vh;
+    
 `;
 const ListContainerDiv = styled.div`
     display:flex;
@@ -72,6 +74,13 @@ const DivOverlay = styled.div`
     top:0;
 `;
 
+const DivPaginationContainer = styled.div`
+    width:100%;
+    margin-top:64px;
+    display:flex;
+    justify-content:center;
+`;
+
 
 const listTest = [
     { vote_average: 5, title: "Hello!", id: 1234 },
@@ -94,15 +103,20 @@ const listTest = [
     { vote_average: 5, title: "Hello!", id: 1234 },
     { vote_average: 5, title: "Hello!", id: 1234 },
     { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 }
+    { vote_average: 5, title: "baraa!", id: 1234 },
+    { vote_average: 5, title: "Mirghani", id: 1234 },
+    { vote_average: 5, title: "Mohamed", id: 1234 },
+    { vote_average: 5, title: "Abuzaid", id: 1234 }
 ]
 
 
-const RenderListItem = ({ data = [], isMovie = true }) => {
-    return data.map((item) => {
+const RenderListItem = ({ data = [], isMovie = true, paging }) => {
+    const { currentPage, total, pageSize } = paging;
+    return data.map((item, index) => {
+        const limit = currentPage * pageSize;
+        const lastLimit = (currentPage - 1) * pageSize;
+        /** Only display current page content **/
+        if (!(index <= limit && index > lastLimit)) return null;
         return (
             <Badge count={item.vote_average} overflowCount={10} style={{ backgroundColor: '#FFA500' }} >
                 <Link to={`/details/${item.id}?isMovies=${isMovie}&title=${item.title || "TV"}`}>
@@ -120,11 +134,22 @@ const RenderListItem = ({ data = [], isMovie = true }) => {
 
 
 const PaginationList = (props) => {
+    const [paging, setPaging] = useState({ currentPage: 1, total: 50, pageSize: 16 });
+
+
+    const onPageChage = (page, pageSize) => {
+        setPaging({ ...paging, currentPage: page })
+        props.onPageChange(page);
+    }
     return (
         <MainDiv>
             <ListContainerDiv>
-                <RenderListItem data={listTest} />
+                <RenderListItem data={props.data} paging={paging} />
             </ListContainerDiv>
+            <DivPaginationContainer>
+                <Pagination size="large" onChange={onPageChage}
+                    defaultPageSize={paging.pageSize} defaultCurrent={paging.currentPage} total={paging.total} />
+            </DivPaginationContainer>
         </MainDiv>
     );
 }

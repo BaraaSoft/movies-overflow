@@ -8,7 +8,7 @@ import {
     fetchUpcomingMovies, fetchTrendingMovies
 } from '../featureList';
 
-
+import { MoreviewTypes, Genre } from '../moreviewTypes'
 const SpaceTop = styled.div`
     margin-top:4em;
 `
@@ -34,29 +34,29 @@ export const HomePageComponent = (props) => {
             <FeatureList
                 data={popularMovies}
                 title="Most Popular"
-                moreUrl={'/search/popular_movies'}
+                moreUrl={`/more?info=${MoreviewTypes.MOST_POPULAR}&subinfo=${"movies"}`}
                 topGenre={['Action', 'Drama', 'Comdey', 'Horror']} />
             <FeatureList
                 data={trendingMovies}
                 title="Trending"
-                moreUrl={'/search/trending_movies'}
+                moreUrl={`/more?info=${MoreviewTypes.TRENDING}&subinfo=${"movies"}`}
                 topGenre={['Action', 'Drama', 'Comdey', 'Horror']} />
             <FeatureList
                 data={nowPlayingMovies}
                 title="Now showing"
-                moreUrl={'/search/now_playing'}
+                moreUrl={`/more?info=${MoreviewTypes.NOW_SHOWING}&subinfo=${"movies"}`}
                 topGenre={['Action', 'Drama', 'Comdey', 'Horror']} />
 
             <FeatureList
                 data={upcommingMovies}
                 title="Up Coming"
-                moreUrl={'/search/upcoming'}
+                moreUrl={`/more?info=${MoreviewTypes.UP_COMING}&subinfo=${"movies"}`}
                 topGenre={['Action', 'Drama', 'Comdey', 'Horror']} />
             <FeatureList
                 isMovie={false}
                 data={popularTVs}
                 title="Popular TV Shows"
-                moreUrl={'/search/popular_tv'}
+                moreUrl={`/more?info=${MoreviewTypes.POPULAR_TV_SHOWS}&subinfo=${"Tv"}`}
                 topGenre={['Action', 'Drama', 'Comdey']} />
         </div>
     );
