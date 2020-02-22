@@ -81,35 +81,6 @@ const DivPaginationContainer = styled.div`
     justify-content:center;
 `;
 
-
-const listTest = [
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "Hello!", id: 1234 },
-    { vote_average: 5, title: "baraa!", id: 1234 },
-    { vote_average: 5, title: "Mirghani", id: 1234 },
-    { vote_average: 5, title: "Mohamed", id: 1234 },
-    { vote_average: 5, title: "Abuzaid", id: 1234 }
-]
-
-
 const RenderListItem = ({ data = [], isMovie = true, paging }) => {
     const { currentPage, total, pageSize } = paging;
     return data.map((item, i) => {
