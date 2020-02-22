@@ -7,13 +7,28 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { fetchGenre } from './menu.action';
 import { SearchBox } from './search.component'
-
+import media from '../media'
 const { SubMenu } = Menu;
 
 
 const DivSearchContainer = styled(Menu.Item)`
-    width:480px;
-    margin-left:10%;
+    width:580px;
+    margin-left:32px;
+     ${media.xxl`
+         width:482px;
+    `}
+    ${media.xl`
+         width:480px;
+         min-height:60px;
+    `}
+    ${media.md`
+        min-height:50px;
+        width:380px;
+    `}
+     ${media.sm`
+        min-height:50px;
+        width:280px;
+    `}
 `;
 
 
