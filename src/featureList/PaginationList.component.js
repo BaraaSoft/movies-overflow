@@ -112,11 +112,13 @@ const listTest = [
 
 const RenderListItem = ({ data = [], isMovie = true, paging }) => {
     const { currentPage, total, pageSize } = paging;
-    return data.map((item, index) => {
+    return data.map((item, i) => {
         const limit = currentPage * pageSize;
         const lastLimit = (currentPage - 1) * pageSize;
+        let index = item.pageNum * pageSize;
         /** Only display current page content **/
         if (!(index <= limit && index > lastLimit)) return null;
+        // if (!(index <= limit && item.pageNum == currentPage)) return null;
         return (
             <Badge count={item.vote_average} overflowCount={10} style={{ backgroundColor: '#FFA500' }} >
                 <Link to={`/details/${item.id}?isMovies=${isMovie}&title=${item.title || "TV"}`}>
@@ -134,9 +136,10 @@ const RenderListItem = ({ data = [], isMovie = true, paging }) => {
 
 
 const PaginationList = (props) => {
-    const [paging, setPaging] = useState({ currentPage: 1, total: 50, pageSize: 16 });
-
-
+    const [paging, setPaging] = useState(props.pagination);
+    useEffect(() => {
+        setPaging({ ...paging, total: props.pagination.total })
+    }, [props.pagination])
     const onPageChage = (page, pageSize) => {
         setPaging({ ...paging, currentPage: page })
         props.onPageChange(page);

@@ -80,8 +80,7 @@ const MoreViewPageComponent = (props) => {
     let info = useQuery().get('info');
     let subinfo = useQuery().get('subinfo');
     const {
-        popularMovies, nowPlayingMovies,
-        upcommingMovies, popularTVs, trendingMovies,
+        pagination
     } = props;
 
     useEffect(() => {
@@ -98,18 +97,19 @@ const MoreViewPageComponent = (props) => {
                 style={{ border: '1px solid rgb(235, 237, 240)' }}
                 onBack={() => props.history.goBack()}
                 title={`${info.toLocaleUpperCase()}`}
-                subTitle={`${subinfo.toLocaleUpperCase()}`}
-
-            />
-            <PaginationList onPageChange={onPageChange} data={selectDataSource(props, { info, subinfo })} />
+                subTitle={`${subinfo.toLocaleUpperCase()}`} />
+            <PaginationList pagination={pagination}
+                onPageChange={onPageChange} data={selectDataSource(props, { info, subinfo })} />
         </DivMain>
     );
 }
 
 
 
-const mapStateToProps = ({ popularMovies, nowPlayingMovies, upcommingMovies, popularTVs, trendingMovies }) => {
-    return { popularMovies, nowPlayingMovies, upcommingMovies, popularTVs, trendingMovies }
+const mapStateToProps = ({ popularMovies, nowPlayingMovies,
+    upcommingMovies, popularTVs,
+    trendingMovies, pagination }) => {
+    return { popularMovies, nowPlayingMovies, upcommingMovies, popularTVs, trendingMovies, pagination }
 }
 
 const MoreViewPage = connect(mapStateToProps,
