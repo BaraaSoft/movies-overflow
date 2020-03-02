@@ -3,7 +3,9 @@ export const MoreviewTypes = {
     TRENDING: 'TRENDING',
     NOW_SHOWING: 'NOW SHOWING',
     UP_COMING: 'UP COMING',
-    POPULAR_TV_SHOWS: 'POPULAR TV SHOWS'
+    POPULAR_TV_SHOWS: 'POPULAR TV SHOWS',
+    Genre: 'GENRE',
+    TOP_MOVIES_RECENTLY: 'TOP MOVIES RECENTLY'
 };
 
 export const Genre = {

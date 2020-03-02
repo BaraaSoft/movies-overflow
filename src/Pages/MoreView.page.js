@@ -10,11 +10,12 @@ import { connect } from 'react-redux';
 import {
     FeatureList, fetchPopularMovies,
     fetchNowPlaying, fetchPopularTv,
-    fetchUpcomingMovies, fetchTrendingMovies, PaginationList
+    fetchUpcomingMovies, fetchTrendingMovies, PaginationList,
+    fetchMoviesByGenre, clearMoviesByGenre, fetchTopMoviesRecently
 } from '../featureList';
 
 
-import { MoreviewTypes, Genre } from '../moreviewTypes';
+import { MoreviewTypes } from '../moreviewTypes';
 
 
 
@@ -25,9 +26,11 @@ const DivMain = styled.div`
 function fetchData(props, queryParams, pagenum) {
     const {
         fetchPopularMovies, fetchNowPlaying,
-        fetchPopularTv, fetchUpcomingMovies, fetchTrendingMovies
+        fetchPopularTv, fetchUpcomingMovies, fetchTrendingMovies,
+        fetchMoviesByGenre, clearMoviesByGenre, fetchTopMoviesRecently
     } = props
     let info = queryParams.info || "";
+    let withGenre = queryParams.withGenre || 0;
     switch (info.toUpperCase()) {
         case MoreviewTypes.MOST_POPULAR:
             fetchPopularMovies(pagenum);
@@ -44,6 +47,14 @@ function fetchData(props, queryParams, pagenum) {
         case MoreviewTypes.UP_COMING:
             fetchUpcomingMovies(pagenum);
             break;
+        case MoreviewTypes.Genre:
+            if (pagenum == 1) clearMoviesByGenre(pagenum, withGenre);
+            fetchMoviesByGenre(pagenum, withGenre);
+            break;
+        case MoreviewTypes.TOP_MOVIES_RECENTLY:
+            if (pagenum == 1) clearMoviesByGenre();
+            fetchTopMoviesRecently(pagenum);
+            break;
         default:
             break;
     }
@@ -53,8 +64,10 @@ function selectDataSource(props, queryParams) {
     const {
         popularMovies, nowPlayingMovies,
         upcommingMovies, popularTVs, trendingMovies,
+        genreMovies
     } = props;
     let info = queryParams.info || "";
+
     switch (info.toUpperCase()) {
         case MoreviewTypes.MOST_POPULAR:
             return popularMovies;
@@ -66,6 +79,9 @@ function selectDataSource(props, queryParams) {
             return trendingMovies;
         case MoreviewTypes.UP_COMING:
             return upcommingMovies;
+        case MoreviewTypes.Genre:
+        case MoreviewTypes.TOP_MOVIES_RECENTLY:
+            return genreMovies;
         default:
             return [];
     }
@@ -79,16 +95,17 @@ const MoreViewPageComponent = (props) => {
     const location = useLocation();
     let info = useQuery().get('info');
     let subinfo = useQuery().get('subinfo');
+    let withGenre = useQuery().get('withGenre');
     const {
         pagination
     } = props;
 
     useEffect(() => {
-        fetchData(props, { info, subinfo }, 1);
+        fetchData(props, { info, subinfo, withGenre }, 1);
     }, []);
 
     const onPageChange = function (pagenum) {
-        fetchData(props, { info, subinfo }, pagenum);
+        fetchData(props, { info, subinfo, withGenre }, pagenum);
     }
 
     return (
@@ -108,14 +125,15 @@ const MoreViewPageComponent = (props) => {
 
 const mapStateToProps = ({ popularMovies, nowPlayingMovies,
     upcommingMovies, popularTVs,
-    trendingMovies, pagination }) => {
-    return { popularMovies, nowPlayingMovies, upcommingMovies, popularTVs, trendingMovies, pagination }
+    trendingMovies, pagination, genreMovies }) => {
+    return { popularMovies, nowPlayingMovies, upcommingMovies, popularTVs, trendingMovies, pagination, genreMovies }
 }
 
 const MoreViewPage = connect(mapStateToProps,
     {
         fetchPopularMovies, fetchNowPlaying,
-        fetchPopularTv, fetchUpcomingMovies, fetchTrendingMovies
+        fetchPopularTv, fetchUpcomingMovies, fetchTrendingMovies,
+        fetchMoviesByGenre, clearMoviesByGenre, fetchTopMoviesRecently
     }
 )(MoreViewPageComponent);
 

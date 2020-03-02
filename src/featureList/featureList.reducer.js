@@ -42,6 +42,16 @@ export const TrendingMoviesReducer = (state = [], action) => {
     return state;
 }
 
+export const GenreMoviesReducer = (state = [], action) => {
+    if (action.type === ActionTypes.MOVIES_BY_GENRE) {
+        return _.uniqBy([...state, ...action.payload], "id")
+            .sort(({ pageNum: pageNumA }, { pageNum: pageNumB }) => pageNumA - pageNumB);
+    } else if (action.type == ActionTypes.CLEAR_MOVIES_BY_GENRE) {
+        return [];
+    }
+    return state;
+}
+
 export const PaginationReducer = (state = { currentPage: 1, total: 16, pageSize: 16 }, action) => {
     if (action.type == ActionTypes.PAGINATION) {
         return { ...state, ...action.payload }

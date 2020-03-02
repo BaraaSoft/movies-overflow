@@ -3,8 +3,10 @@ import { ActionTypes } from '../actionTypes';
 import _ from 'lodash';
 
 export const MenuGenreReducer = (state = [], action) => {
-    console.log(action.payload)
+
     if (action.type === ActionTypes.MENU_GENRE) {
+        console.log(">> MenuGenreReducer")
+        console.log(action.payload)
         return [...action.payload];
     }
     return state;

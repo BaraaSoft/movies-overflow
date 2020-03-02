@@ -7,7 +7,9 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { fetchGenre } from './menu.action';
 import { SearchBox } from './search.component'
-import media from '../media'
+import media from '../media';
+
+import { MoreviewTypes } from '../moreviewTypes'
 const { SubMenu } = Menu;
 
 
@@ -64,15 +66,15 @@ class TopMenuComponent extends React.Component {
                     {GenreSubGroup(this.props)}
                 </SubMenu>
                 <Menu.Item key="nowPlaying">
-                    <Link to="/">
+                    <Link to={`/more?info=${MoreviewTypes.NOW_SHOWING}&subinfo=${"movies"}`}>
                         <Icon type="pic-center" />
                         Now on cinema
                     </Link>
                 </Menu.Item>
                 <Menu.Item key="fire">
-                    <Link to="/">
+                    <Link to={`/more?info=${MoreviewTypes.TOP_MOVIES_RECENTLY}&subinfo=${""}`}>
                         <Icon type="fire" />
-                        Most recent
+                        The top recently
                     </Link>
                 </Menu.Item>
 
@@ -92,7 +94,13 @@ const GenreSubGroup = ({ menuGenre }) => {
                 menuGenre.map((genre, index) => {
                     if (index >= Math.floor(menuGenre.length / 2)) return null;
                     return (
-                        <Menu.Item key={`Genre:${genre.id}`}>{genre.name}</Menu.Item>
+
+                        <Menu.Item key={`Genre:${genre.id}`}>
+                            <Link to={`/more?info=${MoreviewTypes.Genre}&subinfo=${genre.name}&withGenre=${genre.id}`}>
+                                {genre.name}
+                            </Link>
+                        </Menu.Item>
+
                     )
                 })
             }
@@ -100,8 +108,15 @@ const GenreSubGroup = ({ menuGenre }) => {
                 {menuGenre.map((genre, index) => {
                     if (index < Math.floor(menuGenre.length / 2)) return null;
                     return (
-                        <Menu.Item key={`Genre:${genre.id}`}>{genre.name}</Menu.Item>
-                    )
+
+                        <Menu.Item key={`Genre:${genre.id}`}>
+                            <Link to={`/more?info=${MoreviewTypes.Genre}&subinfo=${genre.name}&withGenre=${genre.id}`} >
+                                {genre.name}
+                            </Link>
+
+                        </Menu.Item>
+
+                    );
                 })}
             </SubMenu>
         </Menu.ItemGroup>
