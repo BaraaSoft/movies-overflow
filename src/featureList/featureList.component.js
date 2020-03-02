@@ -3,6 +3,7 @@ import { Button, Icon, Badge } from 'antd';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getImageUrl } from '../https';
+import media from '../media';
 
 
 const DivContainer = styled.div`
@@ -16,15 +17,41 @@ const DivSubcontainer = styled.div`
     display:flex;
     justify-content:flex-start;
     width:100%;
+    
+    ${media.xl`
+        margin-left:1em;
+        margin-right:1em;
+    `}
+    ${media.md`
+        margin-left:1em;
+        margin-right:1em;
+    `}
 `;
 
 const DivTitle = styled.div`
     width:100%;
     display:flex;
-    font-size:26px;
     color:#b1b1b1;
     font-weight:700;
     text-transform:uppercase;
+    font-size:26px;
+
+    
+    ${media.xl`
+        font-size:26px;
+    `}
+     ${media.md`
+        font-size:22px;
+        width:95%;
+        align-items:flex-end;
+    `};
+
+    ${media.sm`
+        width:95%;
+        font-size:22px;
+        align-items:flex-end;
+    `};
+
 `;
 
 const DivSubtitleList = styled.div`
@@ -33,9 +60,16 @@ const DivSubtitleList = styled.div`
     justify-content:flex-start;
     padding-top:6px;
     padding-left:16px;
-   
-
-`
+    
+    ${media.md`
+        align-items:flex-end;
+    `}
+    ${media.sm`
+        align-items:flex-end;
+        width:20%;
+        visibility:hidden;
+    `}
+`;
 const Divsubtitle = styled.div`
     font-size:14px;
     color:#1890ff;
@@ -48,6 +82,10 @@ const Divsubtitle = styled.div`
     &:hover{
         border-bottom:1px solid #1890ff;
     }
+
+    ${media.sm`
+        font-size:13px;
+    `};
 `;
 const DivsubtitleLast = styled(Divsubtitle)`
     flex:1;
