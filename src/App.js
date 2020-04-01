@@ -16,12 +16,9 @@ import { MoreViewPage } from './Pages/MoreView.page';
 
 import reducers from './base.reducers'
 
-
-
-
 function App() {
   return (
-    <Router basename={"/movies-overflow"}>
+    <Router basename={"/moviestacker.com/index.html"}>
 
       <Switch>
         <Route exact path="/" component={HomePage} />
