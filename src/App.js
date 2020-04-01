@@ -18,7 +18,7 @@ import reducers from './base.reducers'
 
 function App() {
   return (
-    <Router basename={"/moviestacker.com/index.html"}>
+    <Router>
 
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -28,7 +28,7 @@ function App() {
         <Route path="/404" component={NotFoundPage} />
         <Redirect to="/404" />
       </Switch>
-      <div className="footer"> Copyright © 2020-2021 MoviesOverflow All Rights Reserved </div>
+      <div className="footer"> Copyright © 2020-2021 Movie Stacker All Rights Reserved </div>
     </Router>
   );
 }

@@ -1,5 +1,5 @@
 {
-  "homepage": "https://s3.eu-central-1.amazonaws.com/moviestacker.com",
+  "homepage": "https://moviestacker.com",
   "name": "movie-stacker",
   "version": "0.1.0",
   "private": true,
@@ -28,7 +28,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "aws": "npm build && aws s3 cp build/ s3://moviestacker.com/ --recursive"
+    "aws": "npm run build && aws s3 cp build/ s3://moviestacker.com/ --recursive"
   },
   "eslintConfig": {
     "extends": "react-app"
