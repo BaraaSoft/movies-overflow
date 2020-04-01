@@ -28,7 +28,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "aws": "aws s3 cp build/ s3://moviestacker.com/ --recursive"
+    "aws": "npm build && aws s3 cp build/ s3://moviestacker.com/ --recursive"
   },
   "eslintConfig": {
     "extends": "react-app"
