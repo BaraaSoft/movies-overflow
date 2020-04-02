@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^2.2.0"
+    "gh-pages": "^2.2.0",
+    "travis-ci-cloudfront-invalidation": "^1.1.0"
   }
 }
