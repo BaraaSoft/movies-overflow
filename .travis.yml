@@ -8,7 +8,7 @@ cache:
 install:
   - npm install -g travis-ci-cloudfront-invalidation
 before_deploy:
-  - npm run build
+  - CI=false npm run build
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
