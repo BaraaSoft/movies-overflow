@@ -6,7 +6,7 @@ cache:
   directories:
     - node_modules
 script:
-  - npm test
+  #- npm test
 before_deploy:
   - npm global add travis-ci-cloudfront-invalidation
   - npm run build
