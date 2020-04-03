@@ -4,8 +4,19 @@ import { ActionTypes } from '../actionTypes';
 
 
 export const fetchMovieDetails = (id) => async (dispatch) => {
-    const response = await https.get(`/movie/${id}`,
-        { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+    let response;
+
+
+    try {
+        response = await https.get(`/movie/${id}`,
+            { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+    } catch (error) {
+        if (error.code === 'ECONNABORTED') {
+            response = await https.get(`/movie/${id}`,
+                { timeout: 10000 * 10, params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+        }
+    }
+
     dispatch({
         type: ActionTypes.MOVIE_DETAILS,
         payload: response.data
@@ -23,8 +34,19 @@ export const fetchTvDetails = (id) => async (dispatch) => {
 
 
 export const fetchSimilarMovies = (id) => async (dispatch) => {
-    const response = await https.get(`/movie/${id}/similar`,
-        { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+    let response;
+    try {
+        response = await https.get(`/movie/${id}/similar`,
+            { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+    } catch (error) {
+        if (error.code === 'ECONNABORTED') {
+            response = await https.get(`/movie/${id}/similar`,
+                { timeout: 10000 * 10, params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+        }
+
+    }
+
+
     dispatch({
         type: ActionTypes.MOVIES_SIMILAR,
         payload: response.data.results
@@ -32,8 +54,18 @@ export const fetchSimilarMovies = (id) => async (dispatch) => {
 }
 
 export const fetchSimilarTvs = (id) => async (dispatch) => {
-    const response = await https.get(`/tv/${id}/similar`,
-        { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+    let response;
+    try {
+        response = await https.get(`/tv/${id}/similar`,
+            { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+    } catch (error) {
+        if (error.code === 'ECONNABORTED') {
+            response = await https.get(`/tv/${id}/similar`,
+                { timeout: 10000 * 10, params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+        }
+    }
+
+
     dispatch({
         type: ActionTypes.TVS_SIMILAR,
         payload: response.data.results
