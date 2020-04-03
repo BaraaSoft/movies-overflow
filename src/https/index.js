@@ -2,7 +2,7 @@ import axios from 'axios';
 //https://api.themoviedb.org/3/movie/550?api_key=b52327a9c201390c336b46ebee1c395b
 export const https = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
-    timeout: 1000,
+    timeout: 10000,
     params: {
         language: 'en-US'
     }
