@@ -1,17 +1,35 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { Tag } from 'antd';
+import media from '../media';
+
 
 
 export const DivContainer = styled.div`
-    width:70%;
-    min-width:1140px;
+   
+    
     height:60vh;
     position:relative;
     display:flex;
     margin-top:8em;
     margin-bottom:.2em;
-`
+
+    ${media.xl`
+        min-width:1140px;
+        width:70%;
+    `};
+    ${media.md`
+        margin-top:14em;
+        min-width:auto;
+        flex-direction:column;
+        width:90%;
+        height:65em;
+        padding-top:4em;
+        margin-bottom:0em;
+    `};
+   
+`;
 
 /** content design **/
 export const SectionImage = styled.div`
@@ -65,6 +83,16 @@ export const DivOverlay = styled.div`
     background:linear-gradient(0deg, rgba(0,0,0,0.8281687675070029) 0%, rgba(0,0,0,0.6348914565826331) 13%, rgba(255,255,255,0) 22%);
     position:absolute;
     top:0;
+`;
+
+
+export const DivTagHolder = styled(Tag)`
+    position:absolute;
+    font-size: 14px;
+    top: 4px;
+    right: 0px;
+    background:transparent;
+    border:none;
 `;
 
 /** Description Design **/

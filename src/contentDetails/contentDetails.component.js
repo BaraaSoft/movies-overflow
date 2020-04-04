@@ -13,7 +13,7 @@ import { getImageUrl } from '../https';
 
 
 import {
-    SectionImage, DivImageContainer, DivImage, DivImageTitle,
+    SectionImage, DivImageContainer, DivImage, DivImageTitle, DivTagHolder,
     DivOverlay, DivContainer, DivSplitOne, DivSplitTwo
 } from './details.style';
 
@@ -49,7 +49,9 @@ const MovieCard = (props) => {
                 <DivOverlay></DivOverlay>
             </DivImageContainer>
             <Rate style={{ marginLeft: '30px' }} count={10} value={rate} disabled />
-            <span className="ant-rate-text"><Tag color="gold">{rate}</Tag></span>
+            <DivTagHolder className="ant-rate-text">
+                <Tag color="gold">{rate}</Tag>
+            </DivTagHolder>
         </SectionImage>
     );
 
