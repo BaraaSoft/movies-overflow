@@ -70,7 +70,7 @@ class TopMenuComponent extends React.Component {
             <Menu style={{ overflow: 'hidden' }} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
                 <Menu.Item />
                 <Menu.Item >
-                    <Link to="/" style={{ display: 'flex', alignItems: 'ceter' }}>
+                    <Link key="home" to="/" style={{ display: 'flex', alignItems: 'ceter' }}>
                         <img src={logo} style={{ width: 48, height: 48, backgroundSize: 'cover' }} />
                         <LogoTitleDiv>Movie Stacker</LogoTitleDiv>
                     </Link>

@@ -57,7 +57,7 @@ const DivTitle = styled.div`
 
     ${media.sm`
         width:95%;
-        font-size:18px;
+        font-size:20px;
         align-items:flex-end;
     `};
 
