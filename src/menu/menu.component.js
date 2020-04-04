@@ -9,6 +9,8 @@ import { fetchGenre } from './menu.action';
 import { SearchBox } from './search.component'
 import media from '../media';
 
+import logo from '../logo512.png';
+
 import { MoreviewTypes } from '../moreviewTypes'
 const { SubMenu } = Menu;
 
@@ -33,6 +35,18 @@ const DivSearchContainer = styled(Menu.Item)`
     `}
 `;
 
+const LogoTitleDiv = styled.div`
+    font-size:22px;
+    display:inline-block;
+    font-weight:400;
+    margin-top:4px;
+    background: -webkit-linear-gradient(#36D1DC, #5B86E5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing:2px;
+    font-family:'Lato';
+`;
+
 
 class TopMenuComponent extends React.Component {
     state = {
@@ -55,12 +69,14 @@ class TopMenuComponent extends React.Component {
         return (
             <Menu style={{ overflow: 'hidden' }} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
                 <Menu.Item />
-                <Menu.Item />
-                <Menu.Item key="home">
-                    <Link to="/">
-                        <Icon type="home" />
-                        Home
+                <Menu.Item >
+                    <Link to="/" style={{ display: 'flex', alignItems: 'ceter' }}>
+                        <img src={logo} style={{ width: 48, height: 48, backgroundSize: 'cover' }} />
+                        <LogoTitleDiv>Movie Stacker</LogoTitleDiv>
                     </Link>
+                </Menu.Item>
+                <Menu.Item>
+
                 </Menu.Item>
                 <SubMenu title={<span className="submenu-title-wrapper"><Icon type="block" />Genre</span>}>
                     {GenreSubGroup(this.props)}
