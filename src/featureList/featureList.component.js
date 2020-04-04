@@ -10,6 +10,13 @@ const DivContainer = styled.div`
     width:100%;
     margin-top:4em;
     overflow: hidden;
+     ${media.md`
+        margin-top:1em;
+    `}
+    ${media.sm`
+       
+    `}
+
 `
 
 const DivSubcontainer = styled.div`
@@ -36,6 +43,8 @@ const DivTitle = styled.div`
     text-transform:uppercase;
     font-size:26px;
 
+   
+    
     
     ${media.xl`
         font-size:26px;
@@ -48,7 +57,7 @@ const DivTitle = styled.div`
 
     ${media.sm`
         width:95%;
-        font-size:22px;
+        font-size:18px;
         align-items:flex-end;
     `};
 
@@ -107,9 +116,28 @@ const DivImageList = styled.div`
 const DivImageContainer = styled.div`
     flex: 0 0 auto;
     flex-shrink: 0;
+
     width:300px;
     height: 380px;
     margin:32px;
+    
+    
+    ${media.md`
+        width:200px;
+        height: 266px;
+        margin:2px;
+        margin-left:20px;
+        margin-right:4px;
+    `};
+    ${media.sm`
+        width:200px;
+        height: 266px;
+        margin:2px;
+         margin-left:20px;
+        margin-right:4px;
+    `};
+    
+
     margin-top:0px;
     overflow:hidden;
     position:relative;

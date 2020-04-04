@@ -9,8 +9,13 @@ import {
 } from '../featureList';
 
 import { MoreviewTypes, Genre } from '../moreviewTypes'
+import media from '../media';
+
 const SpaceTop = styled.div`
     margin-top:4em;
+    ${media.sm`
+        margin-top:0em;
+    `}
 `
 
 export const HomePageComponent = (props) => {
