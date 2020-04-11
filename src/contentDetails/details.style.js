@@ -3,6 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Tag } from 'antd';
 import media from '../media';
+import {
+    YoutubeOutlined
+} from '@ant-design/icons';
 
 
 
@@ -32,12 +35,23 @@ export const DivContainer = styled.div`
 `;
 
 /** content design **/
+
+export const PlayIcon = styled(YoutubeOutlined)`
+    color: #aaaaaa9c;
+    font-weight:200;
+    font-size:170px;
+    position:absolute;
+    left:30%;
+    top:30%;
+`;
+
 export const SectionImage = styled.div`
     position:absolute;
     top:-20%;
 `
 
 export const DivImageContainer = styled.div`
+    cursor:pointer;
     flex: 0 0 auto;
     flex-shrink: 0;
     width:300px;

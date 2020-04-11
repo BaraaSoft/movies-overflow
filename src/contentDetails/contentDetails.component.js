@@ -7,14 +7,15 @@ import {
 } from "react-router-dom";
 import { Descriptions, Icon, Rate, Tag } from 'antd';
 import styled from 'styled-components';
-import moment from 'moment'
+import moment from 'moment';
+
 
 import { getImageUrl } from '../https';
 
 
 import {
     SectionImage, DivImageContainer, DivImage, DivImageTitle, DivTagHolder,
-    DivOverlay, DivContainer, DivSplitOne, DivSplitTwo
+    DivOverlay, DivContainer, DivSplitOne, DivSplitTwo, PlayIcon
 } from './details.style';
 
 
@@ -40,18 +41,20 @@ function getTimeFromMins(mins) {
 const MovieCard = (props) => {
     const { imgUrl, title, rate } = props;
     return (
-        <SectionImage>
+        <SectionImage {...props}>
             <DivImageContainer className='elevate-3'>
                 <DivImage src={getImageUrl(imgUrl)} />
                 <DivImageTitle>
                     <p>{title}</p>
                 </DivImageTitle>
                 <DivOverlay></DivOverlay>
+
             </DivImageContainer>
             <Rate style={{ marginLeft: '30px' }} count={10} value={rate} disabled />
             <DivTagHolder className="ant-rate-text">
                 <Tag color="gold">{rate}</Tag>
             </DivTagHolder>
+            <PlayIcon />
         </SectionImage>
     );
 
@@ -73,14 +76,14 @@ function getEpisodesAverageRuntime(arrTimes = [1]) {
 };
 const ContentDetails = (props) => {
 
-    const { data, movieActors } = props
+    const { data, movieActors, onClick } = props
     const country = parseCountry(data);
 
     const runtime = data.runtime || getEpisodesAverageRuntime(data.episode_run_time)
     return (
         <DivContainer className="elevate-1">
             <DivSplitOne>
-                <MovieCard title={data.title || data.name} imgUrl={data.poster_path} rate={data.vote_average} />
+                <MovieCard onClick={onClick} title={data.title || data.name} imgUrl={data.poster_path} rate={data.vote_average} />
             </DivSplitOne>
             <DivSplitTwo>
                 <Descriptions title={data.title || data.name}>
@@ -107,3 +110,5 @@ const ContentDetails = (props) => {
 
 
 export { ContentDetails };
+
+

@@ -49,3 +49,12 @@ export const ActorDetailsReducer = (state = {}, action) => {
 }
 
 
+export const MovieTrailerReducer = (state = { results: [{ key: 0 }] }, action) => {
+    if (action.type === ActionTypes.FETCH_MOVIE_TRAILER) {
+        return { ...action.payload };
+    }
+    return state;
+}
+
+
+

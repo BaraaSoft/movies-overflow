@@ -6,7 +6,7 @@ import {
     TrendingMoviesReducer, GenreMoviesReducer
 } from './featureList';
 
-import { MovieDetailsReducer, SimilarMoviesReducer, MovieActorsReducer, ActorDetailsReducer, ActorsAllMoviesReducer, SimilarTvsReducer } from './contentDetails'
+import { MovieDetailsReducer, SimilarMoviesReducer, MovieActorsReducer, ActorDetailsReducer, ActorsAllMoviesReducer, SimilarTvsReducer, MovieTrailerReducer } from './contentDetails'
 
 
 
@@ -25,5 +25,7 @@ export default combineReducers({
     actorDetails: ActorDetailsReducer,
     actorAllMovies: ActorsAllMoviesReducer,
     pagination: PaginationReducer,
-    genreMovies: GenreMoviesReducer
+    genreMovies: GenreMoviesReducer,
+    movieTrailer: MovieTrailerReducer
+
 });

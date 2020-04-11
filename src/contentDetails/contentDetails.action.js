@@ -13,12 +13,21 @@ export const fetchMovieDetails = (id) => async (dispatch) => {
     } catch (error) {
         if (error.code === 'ECONNABORTED') {
             response = await https.get(`/movie/${id}`,
-                { timeout: 10000 * 10, params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+                { timeout: 10000 * 10, params: { api_key: 'b52327a9c201390c336b46ebee1c395b', video: true } });
         }
     }
 
     dispatch({
         type: ActionTypes.MOVIE_DETAILS,
+        payload: response.data
+    });
+}
+
+export const fetchMovieTrailer = (id) => async (dispatch) => {
+    const response = await https.get(`/movie/${id}/videos`,
+        { params: { api_key: 'b52327a9c201390c336b46ebee1c395b' } });
+    dispatch({
+        type: ActionTypes.FETCH_MOVIE_TRAILER,
         payload: response.data
     });
 }
