@@ -9,6 +9,7 @@ install:
   - npm install -g travis-ci-cloudfront-invalidation
 script:
   - npm test
+  - npm install
 before_deploy:
   - CI=false npm run build
 deploy:
