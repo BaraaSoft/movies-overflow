@@ -26,9 +26,7 @@ function renderOption(item) {
             <Link to={`/details/${item.id}?isMovies=${true}&title=${item.title || "TV"}`}>
                 <div className="global-search-item">
                     <span className="global-search-item-desc">
-
                         {item.title}
-
                     </span>
                     <span className="global-search-item-count"></span>
                 </div>
